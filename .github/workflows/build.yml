@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login to Github Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    name: Build and Push
+    run: |
+      docker build --no-cache -t ghcr.io/kavehkm/nginx:latest .
+      docker push ghcr.io/kavehkm/nginx:latest
