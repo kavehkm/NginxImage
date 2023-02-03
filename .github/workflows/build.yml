@@ -17,7 +17,7 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    name: Build and Push
-    run: |
-      docker build --no-cache -t ghcr.io/kavehkm/nginx:latest .
-      docker push ghcr.io/kavehkm/nginx:latest
+    - name: Build and Push
+      run: |
+        docker build --no-cache -t ghcr.io/kavehkm/nginx:latest .
+        docker push ghcr.io/kavehkm/nginx:latest
